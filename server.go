@@ -88,9 +88,9 @@ func (s Server) handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	filename := info.Filename
-	if filename == "" {
-		filename = fmt.Sprintf("%x", sha1.Sum(body))
-	}
+
+	filename = fmt.Sprintf("%x", sha1.Sum(body))
+	
 
 	dstPath := path.Join(s.DocumentRoot, filename)
 	dstFile, err := os.OpenFile(dstPath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
